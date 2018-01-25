@@ -11,8 +11,8 @@ typedef struct Abteilung
 	Angestellter Angestellte;
 };
 
-void newDepartmen();
-void newEmployee();
+void addDepartment(EVL* department);
+void addEmployee(EVL* department, Angestellter newEmployee);
 void deleteEmployee();
 void moveEmployee();
 void sumOfSalary();
