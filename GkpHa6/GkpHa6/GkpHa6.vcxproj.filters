@@ -24,12 +24,18 @@
     <ClInclude Include="abteilung.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="angestellter.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="GkpHa6.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="abteilung.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

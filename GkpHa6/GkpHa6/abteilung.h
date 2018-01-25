@@ -1,37 +1,23 @@
 #pragma once
 #ifndef abteilung_h
 #define abteilung_h
+#include "angestellter.h"
+
 typedef struct Abteilung
 {
 	char Name;
 	char Adresse;
 	int Abteilungsnummer;
-	List Angestellte;
+	Angestellter Angestellte;
 };
 
-typedef struct ListeDerAngestellten
-{
-	char Vorname;
-	char Nachname;
-	int persNummer;
-	enum Position
-	{
-		Leiter, Mitarbeiter, Auszubildender, Praktikant
-	};
-	//abteilung
-	Datum Geburtsdatum;
-	Datum Einstellungsdatum;
-	float Gehalt;
-}List;
-
-typedef struct Datum
-{
-	unsigned short Tag;
-	unsigned short Monat;
-	int Jahr;
-};
-
-
-
-
+void newDepartmen();
+void newEmployee();
+void deleteEmployee();
+void moveEmployee();
+void sumOfSalary();
+void printLongestEmployment();
+void printOldestEmployee();
+void highestRankingEmployee();
+void printDepartment();
 #endif // !abteilung_h
