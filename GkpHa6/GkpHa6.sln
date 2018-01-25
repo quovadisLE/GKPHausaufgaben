@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GkpHa6", "GkpHa6\GkpHa6.vcxproj", "{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Debug|x64.ActiveCfg = Debug|x64
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Debug|x64.Build.0 = Debug|x64
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Debug|x86.ActiveCfg = Debug|Win32
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Debug|x86.Build.0 = Debug|Win32
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Release|x64.ActiveCfg = Release|x64
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Release|x64.Build.0 = Release|x64
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Release|x86.ActiveCfg = Release|Win32
+		{6BBBB84F-C9AD-4F72-90A7-EBBA5263F0E4}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67991383-99E0-4C1E-BDEB-C712E6C13D72}
+	EndGlobalSection
+EndGlobal
