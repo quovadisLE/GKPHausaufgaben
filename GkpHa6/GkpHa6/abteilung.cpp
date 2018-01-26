@@ -13,9 +13,13 @@ void createEmployee() {
 }
 void addEmployee(EVL* department, Angestellter newEmployee) {
 	newEmployee.succ = department->first;
-	department->first = &newEmployee;
-
-	if (newEmployee.succ == 0) {
-		newEmployee.succ;
+	
+	if ( newEmployee.succ == 0) {
+		department->last = &newEmployee;
 	}
+	department->first = &newEmployee;
+}
+
+void deleteEmployee(EVL* department, Angestellter kickedEmployee){
+		
 }

@@ -13,7 +13,7 @@ typedef struct Abteilung
 
 void addDepartment(EVL* department);
 void addEmployee(EVL* department, Angestellter newEmployee);
-void deleteEmployee();
+void deleteEmployee(EVL* department, Angestellter kickedEmployee);
 void moveEmployee();
 void sumOfSalary();
 void printLongestEmployment();
