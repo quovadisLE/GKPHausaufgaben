@@ -11,14 +11,16 @@ typedef struct ListeDerAngestellten
 	{
 		Leiter, Mitarbeiter, Auszubildender, Praktikant
 	};
-	//abteilung
+	DVL* Abteilungszugehörigkeit;
 	Datum Geburtsdatum;
 	Datum Einstellungsdatum;
 	float Gehalt;
 	Angestellter* succ;
+	Angestellter* pred;
+	unsigned int index;
 }Angestellter;
 
-struct EVL {
+struct DVL {
 	Angestellter* first;
 	Angestellter* last;
 };
@@ -30,6 +32,10 @@ typedef struct Datum
 	int Jahr;
 };
 
+typedef struct Abteilung 
+{
+	DVL Mitglieder;
+};
 
 
 #endif // !angestellter_h

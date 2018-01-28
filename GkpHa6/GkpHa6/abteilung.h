@@ -11,12 +11,13 @@ typedef struct Abteilung
 	Angestellter Angestellte;
 };
 
-void addDepartment(EVL* department);
-void addEmployee(EVL* department, Angestellter newEmployee);
-void deleteEmployee(EVL* department, Angestellter kickedEmployee);
-void moveEmployee();
-void sumOfSalary();
-void printLongestEmployment();
+void addDepartment(DVL* department);
+void addEmployee(DVL* department, Angestellter newEmployee);
+void deleteEmployee(DVL* department, Angestellter* kickedEmployee);
+void moveEmployee(DVL* department, DVL* newdepartment, Angestellter* movedEmployee);
+Angestellter* findEmployee(DVL* department, Angestellter* searchedEmployee);
+float sumOfSalary(DVL* department);
+Angestellter printLongestEmployment(DVL* department);
 void printOldestEmployee();
 void highestRankingEmployee();
 void printDepartment();
