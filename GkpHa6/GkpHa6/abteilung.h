@@ -8,17 +8,17 @@ typedef struct Abteilung
 	char Name;
 	char Adresse;
 	int Abteilungsnummer;
-	Angestellter Angestellte;
+	DVL Angestellte;
 };
 
-void addDepartment(DVL* department);
+void addDepartment(Abteilung department);
 void addEmployee(DVL* department, Angestellter newEmployee);
 void deleteEmployee(DVL* department, Angestellter* kickedEmployee);
 void moveEmployee(DVL* department, DVL* newdepartment, Angestellter* movedEmployee);
 Angestellter* findEmployee(DVL* department, Angestellter* searchedEmployee);
 float sumOfSalary(DVL* department);
-Angestellter printLongestEmployment(DVL* department);
-void printOldestEmployee();
-void highestRankingEmployee();
-void printDepartment();
+Angestellter* printLongestEmployment(DVL* department);
+Angestellter* printOldestEmployee(DVL* department);
+Angestellter* highestRankingEmployee(DVL* department);
+void printDepartment(Abteilung department);
 #endif // !abteilung_h

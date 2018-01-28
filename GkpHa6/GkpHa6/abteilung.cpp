@@ -2,9 +2,12 @@
 #include "angestellter.h"
 #include "stdafx.h"
 #include "targetver.h"
+#include <stdio.h>
 
-void addDepartment(DVL* department) {
-	department->first = department->last = 0;
+void addDepartment(Abteilung department) 
+{
+	//eingeben
+	department.Angestellte.first = department.Angestellte.last = 0;
 }
 
 Angestellter createEmployee() 
@@ -79,12 +82,100 @@ float sumOfSalary(DVL* department)
 	return salarysum;
 }
 
-Angestellter printLongestEmployment(DVL* department)
+Angestellter* printLongestEmployment(DVL* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen
 {
 	Angestellter* longestEmployment = department->first;
 	Angestellter* Employee = department->first;
-	while (Employee != 0)
+	while (Employee != department->last)
 	{
-		
+		if (longestEmployment->Einstellungsdatum.Jahr - Employee->Einstellungsdatum.Jahr < 0)
+		{
+			longestEmployment = Employee;
+		}
+		else if(longestEmployment->Einstellungsdatum.Jahr - Employee->Einstellungsdatum.Jahr == 0)
+		{
+			if (longestEmployment->Einstellungsdatum.Monat - Employee->Einstellungsdatum.Monat < 0)
+			{
+				longestEmployment = Employee;
+			}
+			else if (longestEmployment->Einstellungsdatum.Monat - Employee->Einstellungsdatum.Monat == 0)
+			{
+				if (longestEmployment->Einstellungsdatum.Monat - Employee->Einstellungsdatum.Monat < 0)
+				{
+					longestEmployment = Employee;
+				}
+				else if (longestEmployment->Einstellungsdatum.Tag - Employee->Einstellungsdatum.Tag < 0)
+				{
+					longestEmployment = Employee;
+				}
+
+			}
+		}
+		Employee = Employee->succ;
+	}
+	return longestEmployment;
+}
+
+
+Angestellter* printOldestEmployee(DVL* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen
+{
+	Angestellter* oldestEmployee = department->first;
+	Angestellter* Employee = department->first;
+	while (Employee != department->last)
+	{
+		if (oldestEmployee->Geburtsdatum.Jahr - Employee->Geburtsdatum.Jahr < 0)
+		{
+			oldestEmployee = Employee;
+		}
+		else if (oldestEmployee->Geburtsdatum.Jahr - Employee->Geburtsdatum.Jahr == 0)
+		{
+			if (oldestEmployee->Geburtsdatum.Monat - Employee->Geburtsdatum.Monat < 0)
+			{
+				oldestEmployee = Employee;
+			}
+			else if (oldestEmployee->Geburtsdatum.Monat - Employee->Geburtsdatum.Monat == 0)
+			{
+				if (oldestEmployee->Geburtsdatum.Monat - Employee->Geburtsdatum.Monat < 0)
+				{
+					oldestEmployee = Employee;
+				}
+				else if (oldestEmployee->Geburtsdatum.Tag - Employee->Geburtsdatum.Tag < 0)
+				{
+					oldestEmployee = Employee;
+				}
+
+			}
+		}
+		Employee = Employee->succ;
+	}
+	return oldestEmployee;
+}
+
+Angestellter* highestRankingEmployee(DVL* department) 
+{
+	Angestellter* highestRank = department->first;
+	Angestellter* Employee = department->first;
+
+	while (Employee != department->last)
+	{
+		if (Employee->Position > highestRank->Position)
+		{
+			highestRank = Employee;
+		}
+		Employee = Employee->succ;
+	}
+
+	return highestRank;
+}
+
+void printDepartment(Abteilung department) 
+{
+	Angestellter* Employee = department.Angestellte.first;
+	printf("%c \n", department.Name);
+	printf("%d \n", department.Abteilungsnummer);
+	printf("%c \n", department.Adresse);
+	while (Employee != department.Angestellte.last)
+	{
+		//print the fuck out
 	}
 }

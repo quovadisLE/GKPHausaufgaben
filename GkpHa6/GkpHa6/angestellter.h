@@ -7,11 +7,8 @@ typedef struct ListeDerAngestellten
 	char Vorname;
 	char Nachname;
 	int persNummer;
-	enum Position
-	{
-		Leiter, Mitarbeiter, Auszubildender, Praktikant
-	};
-	DVL* Abteilungszugehörigkeit;
+	Position Position;
+	DVL* Abteilungszugehörigkeit; //thats possibly wrong
 	Datum Geburtsdatum;
 	Datum Einstellungsdatum;
 	float Gehalt;
@@ -32,10 +29,8 @@ typedef struct Datum
 	int Jahr;
 };
 
-typedef struct Abteilung 
+enum Position
 {
-	DVL Mitglieder;
+	Leiter = 3, Mitarbeiter = 2, Auszubildender = 1, Praktikant = 0
 };
-
-
 #endif // !angestellter_h
