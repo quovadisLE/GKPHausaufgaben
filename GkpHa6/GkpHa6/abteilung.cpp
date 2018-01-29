@@ -179,3 +179,19 @@ void printDepartment(Abteilung department)
 		//print the fuck out
 	}
 }
+
+int AlterinJahren(Angestellter employee, int aktuellesJahr) //propably wrong
+{
+	int Alter = 0;
+	Alter = aktuellesJahr - employee.Geburtsdatum.Jahr;
+
+	return Alter;
+}
+
+int Betriebszugehörigkeit(Angestellter employee, int aktuellesJahr)
+{
+	int Jahre = 0;
+	Jahre = aktuellesJahr - employee.Einstellungsdatum.Jahr;
+
+	return Jahre;
+}

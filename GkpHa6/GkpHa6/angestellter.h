@@ -33,4 +33,6 @@ enum Position
 {
 	Leiter = 3, Mitarbeiter = 2, Auszubildender = 1, Praktikant = 0
 };
+
+int AlterinJahren(Angestellter employee, int AktuellesJahr);
 #endif // !angestellter_h
