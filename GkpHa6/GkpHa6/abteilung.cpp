@@ -66,9 +66,9 @@ void addEmployee(Abteilung* department, Angestellter newEmployee)
 	department->Angestellte.first = &newEmployee;
 }
 
-Angestellter* findEmployee(DVL* department, Angestellter* searchedEmployee)
+Angestellter* findEmployee(Abteilung* department, Angestellter* searchedEmployee)
 {
-	Angestellter* searched = department->first;
+	Angestellter* searched = department->Angestellte.first;
 	int flag = 0;
 	while (flag == 0)
 	{
@@ -92,7 +92,7 @@ void deleteEmployee(DVL* department, Angestellter* kickedEmployee)
 	delete doomed;
 }
 
-void moveEmployee(DVL* department, DVL* newdepartment, Angestellter* movedEmployee)
+void moveEmployee(Abteilung* department, Abteilung* newdepartment, Angestellter* movedEmployee)
 {
 	Angestellter* movedEmployee = findEmployee(department, movedEmployee);
 	movedEmployee->pred->succ = movedEmployee->succ;
