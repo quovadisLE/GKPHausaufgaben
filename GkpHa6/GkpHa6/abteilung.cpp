@@ -29,23 +29,33 @@ Angestellter createEmployee(Abteilung* department)
 	Angestellter* newEmployee = new Angestellter;
 	
 	printf("\n Herzlich Willkommen in der Sub- Routine zum Erstellen eines neuen Angestellten. \n");
-	printf("\n Bitte geben Sie den Vornamen ein. \n");
+	
+	printf("\nBitte geben Sie den Vornamen ein. \n ");
 	scanf_s("%c", &newEmployee->Vorname);
-	printf("\n Bitte geben Sie den Nachnamen ein. \n");
+	
+	printf("\nBitte geben Sie den Nachnamen ein. \n");
 	scanf_s("%c", &newEmployee->Nachname);
-	printf("\n Bitte geben Sie nun die Personal Nummer des Angestellten ein. \n");
+	
+	printf("\nBitte geben Sie nun die Personal Nummer des Angestellten ein. \n");
 	scanf_s("%i", &newEmployee->persNummer);
-	printf("\n Bitte geben Sie nun die Position des Angestellten ein. \n");
+	
+	printf("\nBitte geben Sie nun die Position des Angestellten ein. \n");
 	scanf_s("%c", &newEmployee->Position);
+	
 	addEmployee(department, *newEmployee);
-	printf("Bitte geben Sie das Geburtsdatum ein.");
+	
+	printf("\nBitte geben Sie das Geburtsdatum ein.\n");
 	newEmployee->Geburtsdatum = Datumseingabe();
-	printf("Bitte geben Sie das Einstellungsdatum ein.");
+	
+	printf("\nBitte geben Sie das Einstellungsdatum ein.\n");
 	newEmployee->Einstellungsdatum = Datumseingabe();
+	
 	printf("\n Bitte geben Sie das Gehalt ein.\n");
 	scanf_s("%f", &newEmployee->Gehalt);
+	
 	newEmployee->succ = department->Angestellte.first;
 	newEmployee->pred = 0;
+
 	unsigned int index;
 	
 	return *newEmployee;
@@ -91,6 +101,7 @@ void deleteEmployee(Abteilung* department, Angestellter* kickedEmployee)
 	Angestellter* doomed = findEmployee(department, kickedEmployee);
 	doomed->pred->succ = doomed->succ;
 	doomed->succ->pred = doomed->pred;
+	
 	delete doomed;
 }
 
@@ -100,6 +111,7 @@ void moveEmployee(Abteilung* department, Abteilung* newdepartment, Angestellter*
 	movedEmployee->pred->succ = movedEmployee->succ;
 	movedEmployee->succ->pred = movedEmployee->pred;
 	addEmployee(newdepartment, *movedEmployee);
+	
 	delete movedEmployee;																//Ich weis nicht ob das so funktioniert, es muss der überflüssige Employee gelöscht werden
 }
 
@@ -117,7 +129,7 @@ float sumOfSalary(Abteilung* department)
 	return salarysum;
 }
 
-Angestellter* printLongestEmployment(Abteilung* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen
+Angestellter* printLongestEmployment(Abteilung* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen -Done
 {
 	Angestellter* longestEmployment = department->Angestellte.first;
 	Angestellter* Employee = department->Angestellte.first;
@@ -128,6 +140,7 @@ Angestellter* printLongestEmployment(Abteilung* department) // Hier durchaus col
 
 		Employee = Employee->succ;
 	}
+
 	return longestEmployment;
 }
 
@@ -143,6 +156,7 @@ Angestellter* printOldestEmployee(Abteilung* department)
 
 		Employee = Employee->succ;
 	}
+
 	return oldestEmployee;
 }
 
