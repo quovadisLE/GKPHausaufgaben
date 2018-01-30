@@ -84,7 +84,7 @@ Angestellter* findEmployee(Abteilung* department, Angestellter* searchedEmployee
 	}
 }
 
-void deleteEmployee(DVL* department, Angestellter* kickedEmployee)
+void deleteEmployee(Abteilung* department, Angestellter* kickedEmployee)
 {
 	Angestellter* doomed = findEmployee(department, kickedEmployee);
 	doomed->pred->succ = doomed->succ;
@@ -101,9 +101,9 @@ void moveEmployee(Abteilung* department, Abteilung* newdepartment, Angestellter*
 	delete movedEmployee;																//Ich weis nicht ob das so funktioniert, es muss der überflüssige Employee gelöscht werden
 }
 
-float sumOfSalary(DVL* department)
+float sumOfSalary(Abteilung* department)
 {
-	Angestellter* Employee = department->first;
+	Angestellter* Employee = department->Angestellte.first;
 	float salarysum = 0;
 
 	while (Employee != 0)
@@ -115,81 +115,41 @@ float sumOfSalary(DVL* department)
 	return salarysum;
 }
 
-Angestellter* printLongestEmployment(DVL* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen
+Angestellter* printLongestEmployment(Abteilung* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen
 {
-	Angestellter* longestEmployment = department->first;
-	Angestellter* Employee = department->first;
-	while (Employee != department->last)
+	Angestellter* longestEmployment = department->Angestellte.first;
+	Angestellter* Employee = department->Angestellte.first;
+	while (Employee != 0)
 	{
-		if (longestEmployment->Einstellungsdatum.Jahr - Employee->Einstellungsdatum.Jahr < 0)
-		{
+		if (DateAsInt(longestEmployment->Einstellungsdatum) - DateAsInt(Employee->Einstellungsdatum) < 0)
 			longestEmployment = Employee;
-		}
-		else if(longestEmployment->Einstellungsdatum.Jahr - Employee->Einstellungsdatum.Jahr == 0)
-		{
-			if (longestEmployment->Einstellungsdatum.Monat - Employee->Einstellungsdatum.Monat < 0)
-			{
-				longestEmployment = Employee;
-			}
-			else if (longestEmployment->Einstellungsdatum.Monat - Employee->Einstellungsdatum.Monat == 0)
-			{
-				if (longestEmployment->Einstellungsdatum.Monat - Employee->Einstellungsdatum.Monat < 0)
-				{
-					longestEmployment = Employee;
-				}
-				else if (longestEmployment->Einstellungsdatum.Tag - Employee->Einstellungsdatum.Tag < 0)
-				{
-					longestEmployment = Employee;
-				}
 
-			}
-		}
 		Employee = Employee->succ;
 	}
 	return longestEmployment;
 }
 
 
-Angestellter* printOldestEmployee(DVL* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen
+Angestellter* printOldestEmployee(Abteilung* department) 
 {
-	Angestellter* oldestEmployee = department->first;
-	Angestellter* Employee = department->first;
-	while (Employee != department->last)
+	Angestellter* oldestEmployee = department->Angestellte.first;
+	Angestellter* Employee = department->Angestellte.first;
+	while (Employee != department->Angestellte.last)
 	{
-		if (oldestEmployee->Geburtsdatum.Jahr - Employee->Geburtsdatum.Jahr < 0)
-		{
+		if (DateAsInt(oldestEmployee->Geburtsdatum) - DateAsInt(Employee->Geburtsdatum) < 0)
 			oldestEmployee = Employee;
-		}
-		else if (oldestEmployee->Geburtsdatum.Jahr - Employee->Geburtsdatum.Jahr == 0)
-		{
-			if (oldestEmployee->Geburtsdatum.Monat - Employee->Geburtsdatum.Monat < 0)
-			{
-				oldestEmployee = Employee;
-			}
-			else if (oldestEmployee->Geburtsdatum.Monat - Employee->Geburtsdatum.Monat == 0)
-			{
-				if (oldestEmployee->Geburtsdatum.Monat - Employee->Geburtsdatum.Monat < 0)
-				{
-					oldestEmployee = Employee;
-				}
-				else if (oldestEmployee->Geburtsdatum.Tag - Employee->Geburtsdatum.Tag < 0)
-				{
-					oldestEmployee = Employee;
-				}
 
-			}
-		}
 		Employee = Employee->succ;
 	}
 	return oldestEmployee;
 }
 
-Angestellter* highestRankingEmployee(DVL* department) 
+Angestellter* highestRankingEmployee(Abteilung* department) 
 {
-	Angestellter* highestRank = department->first;
-	Angestellter* Employee = department->first;
+	Angestellter* highestRank = department->Angestellte.first;
+	Angestellter* Employee = department->Angestellte.first;
 
-	while (Employee != department->last)
+	while (Employee != department->Angestellte.last)
 	{
 		if (Employee->Position > highestRank->Position)
 		{
@@ -201,13 +161,13 @@ Angestellter* highestRankingEmployee(DVL* department)
 	return highestRank;
 }
 
-void printDepartment(Abteilung department) 
+void printDepartment(Abteilung* department) 
 {
 	int i = 1;
-	Angestellter* Employee = department.Angestellte.first;
-	printf("%c \n", department.Name);
-	printf("%d \n", department.Abteilungsnummer);
-	printf("%c \n", department.Adresse);
+	Angestellter* Employee = department->Angestellte.first;
+	printf("%c \n", department->Name);
+	printf("%d \n", department->Abteilungsnummer);
+	printf("%c \n", department->Adresse);
 	while (Employee != 0)
 	{
 		printf("#%i %c, %c, %i \n", i, Employee->Nachname, Employee->Vorname, Employee->persNummer, Employee->Position);
@@ -232,7 +192,7 @@ int Betriebszugehörigkeit(Angestellter employee, int aktuellesJahr)
 	return Jahre;
 }
 
-Datum Datumseingabe()
+Datum* Datumseingabe()
 {
 	Datum* Date = new Datum;
 	printf("\n Bitte geben Sie den Tag ein.\n");
@@ -241,4 +201,45 @@ Datum Datumseingabe()
 	scanf_s("%i", &Date->Monat);
 	printf("\n Bitte geben Sie das Jahr ein. \n");
 	scanf_s("%i", &Date->Jahr);
+
+	return Date;
+}
+
+int DateAsInt(Datum date)
+{
+	int x = 0;						
+
+	switch (date.Monat) {
+	case 1: x = date.Tag;
+		break;
+	case 2: x = 31 + date.Tag;
+		break;
+	case 3: x = 59 + date.Tag;
+		break;
+	case 4: x = 90 + date.Tag;
+		break;
+	case 5: x = 120 + date.Tag;
+		break;
+	case 6: x = 151 + date.Tag;
+		break;
+	case 7: x = 181 + date.Tag;
+		break;
+	case 8: x = 212 + date.Tag;
+		break;
+	case 9: x = 243 + date.Tag;
+		break;
+	case 10: x = 273 + date.Tag;
+		break;
+	case 11: x = 304 + date.Tag;
+		break;
+	case 12: x = 334 + date.Tag;
+	}
+
+	if (date.Jahr % 4 == 0) {   //Jahre im Schaltjahr haben einen Tag mehr als regulaere Jahre, deshalb wird 1 addiert
+		++x;
+	}
+	
+	x += date.Jahr * 365;
+
+	return x;
 }

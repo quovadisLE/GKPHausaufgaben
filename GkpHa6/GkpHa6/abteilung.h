@@ -20,5 +20,6 @@ float sumOfSalary(DVL* department);
 Angestellter* printLongestEmployment(DVL* department);
 Angestellter* printOldestEmployee(DVL* department);
 Angestellter* highestRankingEmployee(DVL* department);
-void printDepartment(Abteilung department);
+void printDepartment(Abteilung* department);
+int DateAsInt(Datum date);
 #endif // !abteilung_h
