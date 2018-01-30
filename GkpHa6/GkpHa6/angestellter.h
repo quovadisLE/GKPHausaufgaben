@@ -8,7 +8,7 @@ typedef struct ListeDerAngestellten
 	char Nachname;
 	int persNummer;
 	Position Position;
-	DVL* Abteilungszugehörigkeit; //thats possibly wrong
+	Abteilung* Abteilungszugehörigkeit; //now its right
 	Datum Geburtsdatum;
 	Datum Einstellungsdatum;
 	float Gehalt;

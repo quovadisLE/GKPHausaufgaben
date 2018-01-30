@@ -12,7 +12,7 @@ typedef struct Abteilung
 };
 
 void addDepartment(Abteilung department);
-void addEmployee(DVL* department, Angestellter newEmployee);
+void addEmployee(Abteilung* department, Angestellter newEmployee);
 void deleteEmployee(DVL* department, Angestellter* kickedEmployee);
 void moveEmployee(DVL* department, DVL* newdepartment, Angestellter* movedEmployee);
 Angestellter* findEmployee(DVL* department, Angestellter* searchedEmployee);
