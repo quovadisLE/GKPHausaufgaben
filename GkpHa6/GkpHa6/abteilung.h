@@ -3,6 +3,7 @@
 #define abteilung_h
 #include "angestellter.h"
 
+
 typedef struct Abteilung
 {
 	char Name;
@@ -13,13 +14,11 @@ typedef struct Abteilung
 
 void addDepartment(Abteilung department);
 void addEmployee(Abteilung* department, Angestellter newEmployee);
-void deleteEmployee(DVL* department, Angestellter* kickedEmployee);
-void moveEmployee(DVL* department, DVL* newdepartment, Angestellter* movedEmployee);
-Angestellter* findEmployee(DVL* department, Angestellter* searchedEmployee);
-float sumOfSalary(DVL* department);
-Angestellter* printLongestEmployment(DVL* department);
-Angestellter* printOldestEmployee(DVL* department);
-Angestellter* highestRankingEmployee(DVL* department);
+void deleteEmployee(Abteilung* department, Angestellter* kickedEmployee);
+void moveEmployee(Abteilung* department, Abteilung* newdepartment, Angestellter* movedEmployee);
+Angestellter* findEmployee(Abteilung* department, Angestellter* searchedEmployee);
+float sumOfSalary(Abteilung* department);
+Angestellter* highestRankingEmployee(Abteilung* department);
 void printDepartment(Abteilung* department);
-int DateAsInt(Datum date);
+
 #endif // !abteilung_h

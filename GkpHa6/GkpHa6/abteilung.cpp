@@ -1,5 +1,6 @@
 #include "abteilung.h"
 #include "angestellter.h"
+#include "DatumsBerechnungen.h"
 #include "stdafx.h"
 #include "targetver.h"
 #include <stdio.h>
@@ -46,6 +47,7 @@ Angestellter createEmployee(Abteilung* department)
 	newEmployee->succ = department->Angestellte.first;
 	newEmployee->pred = 0;
 	unsigned int index;
+	
 	return *newEmployee;
 }
 
@@ -134,7 +136,7 @@ Angestellter* printOldestEmployee(Abteilung* department)
 {
 	Angestellter* oldestEmployee = department->Angestellte.first;
 	Angestellter* Employee = department->Angestellte.first;
-	while (Employee != department->Angestellte.last)
+	while (Employee != 0)
 	{
 		if (DateAsInt(oldestEmployee->Geburtsdatum) - DateAsInt(Employee->Geburtsdatum) < 0)
 			oldestEmployee = Employee;
@@ -149,7 +151,7 @@ Angestellter* highestRankingEmployee(Abteilung* department)
 	Angestellter* highestRank = department->Angestellte.first;
 	Angestellter* Employee = department->Angestellte.first;
 
-	while (Employee != department->Angestellte.last)
+	while (Employee != 0)
 	{
 		if (Employee->Position > highestRank->Position)
 		{
@@ -192,54 +194,3 @@ int Betriebszugehörigkeit(Angestellter employee, int aktuellesJahr)
 	return Jahre;
 }
 
-Datum* Datumseingabe()
-{
-	Datum* Date = new Datum;
-	printf("\n Bitte geben Sie den Tag ein.\n");
-	scanf_s("%i", &Date->Tag);
-	printf("\n Bitte geben Sie den Monat ein. \n");
-	scanf_s("%i", &Date->Monat);
-	printf("\n Bitte geben Sie das Jahr ein. \n");
-	scanf_s("%i", &Date->Jahr);
-
-	return Date;
-}
-
-int DateAsInt(Datum date)
-{
-	int x = 0;						
-
-	switch (date.Monat) {
-	case 1: x = date.Tag;
-		break;
-	case 2: x = 31 + date.Tag;
-		break;
-	case 3: x = 59 + date.Tag;
-		break;
-	case 4: x = 90 + date.Tag;
-		break;
-	case 5: x = 120 + date.Tag;
-		break;
-	case 6: x = 151 + date.Tag;
-		break;
-	case 7: x = 181 + date.Tag;
-		break;
-	case 8: x = 212 + date.Tag;
-		break;
-	case 9: x = 243 + date.Tag;
-		break;
-	case 10: x = 273 + date.Tag;
-		break;
-	case 11: x = 304 + date.Tag;
-		break;
-	case 12: x = 334 + date.Tag;
-	}
-
-	if (date.Jahr % 4 == 0) {   //Jahre im Schaltjahr haben einen Tag mehr als regulaere Jahre, deshalb wird 1 addiert
-		++x;
-	}
-	
-	x += date.Jahr * 365;
-
-	return x;
-}

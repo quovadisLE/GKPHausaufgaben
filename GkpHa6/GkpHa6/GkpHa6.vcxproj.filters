@@ -27,6 +27,9 @@
     <ClInclude Include="angestellter.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="DatumsBerechnungen.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +39,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="abteilung.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Datum.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

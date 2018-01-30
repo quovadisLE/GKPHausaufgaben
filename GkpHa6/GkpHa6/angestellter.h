@@ -2,6 +2,7 @@
 #ifndef angestellter_h
 #define angestellter_h
 
+
 typedef struct ListeDerAngestellten
 {
 	char Vorname;
@@ -22,12 +23,6 @@ struct DVL {
 	Angestellter* last;
 };
 
-typedef struct Datum
-{
-	unsigned short Tag;
-	unsigned short Monat;
-	int Jahr;
-};
 
 enum Position
 {
