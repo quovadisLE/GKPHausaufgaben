@@ -6,8 +6,8 @@
 
 typedef struct Abteilung
 {
-	char Name;
-	char Adresse;
+	std::string Name;
+	std::string Adresse;
 	int Abteilungsnummer;
 	DVL Angestellte;
 };

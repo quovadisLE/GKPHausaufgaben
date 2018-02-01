@@ -3,13 +3,17 @@
 #define angestellter_h
 #include "DatumsBerechnungen.h"
 #include "abteilung.h"
+#include <iostream>
+#include <stdbool.h>
+#include <string.h>
+using namespace std;
 
 typedef struct ListeDerAngestellten
 {
-	char Vorname;
-	char Nachname;
+	std::string Vorname;
+	std::string Nachname;
 	int persNummer;
-	Position Position;
+	Position Position_t;
 	Abteilung* Abteilungszugehörigkeit; //now its right
 	Datum Geburtsdatum;
 	Datum Einstellungsdatum;

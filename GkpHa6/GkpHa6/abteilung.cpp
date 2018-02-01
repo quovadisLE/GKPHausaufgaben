@@ -5,13 +5,15 @@
 #include "targetver.h"
 #include <iostream>
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 using namespace std;
 
 Abteilung* addDepartment() 
 {
 
 	Abteilung* department = new Abteilung;
-	char Name, Adresse;
+	string Name, Adresse;
 	int Abteilungsnummer;
 
 	cout << "\n Herzlich Willkommen in der Sub- Routine zum Erstellen einer neuen Abteilung. \n";
@@ -32,7 +34,7 @@ Abteilung* addDepartment()
 Angestellter* createEmployee() 
 {
 	Angestellter* newEmployee = new Angestellter;
-	char dummy;
+	string dummy;
 
 	cout <<("\n Herzlich Willkommen in der Sub- Routine zum Erstellen eines neuen Angestellten. \n");
 	
@@ -229,7 +231,15 @@ int Betriebszugehörigkeit(Angestellter employee, int aktuellesJahr)
 void printDepartmentSorted(Abteilung *department)
 {
 	Angestellter* Employee = department->Angestellte.first;
-	cout << ("%c \n", department->Name);
-	cout << ("%d \n", department->Abteilungsnummer);
-	cout << ("%c \n", department->Adresse);
+	Angestellter* currentTop = nullptr;
+	cout << department->Name;
+	cout << department->Abteilungsnummer;
+	cout << department->Adresse;
+	
+	while (Employee != nullptr)
+	{
+	
+	}
+	
+	DVL* sortedEmployees = new DVL;
 }
