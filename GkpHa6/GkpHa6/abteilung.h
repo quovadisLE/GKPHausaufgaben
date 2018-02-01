@@ -12,13 +12,15 @@ typedef struct Abteilung
 	DVL Angestellte;
 };
 
-void addDepartment(Abteilung department);
+Abteilung* addDepartment();
 void addEmployee(Abteilung* department, Angestellter newEmployee);
 void deleteEmployee(Abteilung* department, Angestellter* kickedEmployee);
 void moveEmployee(Abteilung* department, Abteilung* newdepartment, Angestellter* movedEmployee);
-Angestellter* findEmployee(Abteilung* department, Angestellter* searchedEmployee);
+Angestellter* findEmployeeWithPersonalNr(Abteilung* department, int PersonalNummer);
+bool leiterVorhanden(Abteilung* department);
 float sumOfSalary(Abteilung* department);
 Angestellter* highestRankingEmployee(Abteilung* department);
 void printDepartment(Abteilung* department);
+
 
 #endif // !abteilung_h
