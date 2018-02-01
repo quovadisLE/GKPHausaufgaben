@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="abteilung.cpp" />
+    <ClCompile Include="Angestellter.cpp" />
     <ClCompile Include="Datum.cpp" />
     <ClCompile Include="GkpHa6.cpp" />
     <ClCompile Include="stdafx.cpp">

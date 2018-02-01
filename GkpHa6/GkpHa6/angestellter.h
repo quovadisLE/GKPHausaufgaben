@@ -1,7 +1,8 @@
 #pragma once
 #ifndef angestellter_h
 #define angestellter_h
-
+#include "DatumsBerechnungen.h"
+#include "abteilung.h"
 
 typedef struct ListeDerAngestellten
 {
@@ -30,4 +31,8 @@ enum Position
 };
 
 int AlterinJahren(Angestellter employee, int AktuellesJahr);
+
+Angestellter* findLongestEmployment(Abteilung* department);
+Angestellter* findOldestEmployee(Abteilung* department);
+
 #endif // !angestellter_h
