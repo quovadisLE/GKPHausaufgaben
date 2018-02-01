@@ -129,7 +129,7 @@ float sumOfSalary(Abteilung* department)
 	return salarysum;
 }
 
-Angestellter* printLongestEmployment(Abteilung* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen -Done
+Angestellter* printLongestEmployment(Abteilung* department) 
 {
 	Angestellter* longestEmployment = department->Angestellte.first;
 	Angestellter* Employee = department->Angestellte.first;
