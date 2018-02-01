@@ -3,62 +3,89 @@
 #include "DatumsBerechnungen.h"
 #include "stdafx.h"
 #include "targetver.h"
-#include <stdio.h>
+#include <iostream>
+#include <stdbool.h>
 
-void addDepartment(Abteilung department) 
+Abteilung* addDepartment() 
 {
+
+	Abteilung* department = new Abteilung;
 	char Name, Adresse;
 	int Abteilungsnummer;
 
-	printf(" \n Herzlich Willkommen in der Sub- Routine zum Erstellen einer neuen Abteilung. \n");
-	printf("Bitte geben Sie den Namen der neuen Abteilung ein.");
-	scanf_s("%c", &department.Name);
-	department.Name = Name;
+	std::cout << "\n Herzlich Willkommen in der Sub- Routine zum Erstellen einer neuen Abteilung. \n";
+	std::cout << "Bitte geben Sie den Namen der neuen Abteilung ein.";
+	std::cin >> department->Name;
+	department->Name = Name;
 
-	printf("\n Bitte geben Sie die Adresse der Abteilung ein.\n");
-	scanf_s("%c", &department.Adresse);
+	std::cout <<("\n Bitte geben Sie die Adresse der Abteilung ein.\n");
+	std::cin >> department->Adresse;
 
-	printf("\n Bitte geben Sie die Abteilungsnummer ein. \n");
-	scanf_s("%c", &department.Abteilungsnummer);
-	department.Angestellte.first = department.Angestellte.last = 0;
+	std::cout <<("\n Bitte geben Sie die Abteilungsnummer ein. \n");
+	std::cin >> department->Abteilungsnummer;
+	department->Angestellte.first = department->Angestellte.last = 0;
+
+	return department;
 }
 
-Angestellter createEmployee(Abteilung* department) 
+Angestellter* createEmployee(Abteilung* department) 
 {
 
 	Angestellter* newEmployee = new Angestellter;
+	char dummy;
+
+	std::cout <<("\n Herzlich Willkommen in der Sub- Routine zum Erstellen eines neuen Angestellten. \n");
 	
-	printf("\n Herzlich Willkommen in der Sub- Routine zum Erstellen eines neuen Angestellten. \n");
+	std::cout <<("\nBitte geben Sie den Vornamen ein. \n ");
+	std::cin >> newEmployee->Vorname;
 	
-	printf("\nBitte geben Sie den Vornamen ein. \n ");
-	scanf_s("%c", &newEmployee->Vorname);
+	std::cout <<("\nBitte geben Sie den Nachnamen ein. \n");
+	std::cin >> newEmployee->Nachname;
 	
-	printf("\nBitte geben Sie den Nachnamen ein. \n");
-	scanf_s("%c", &newEmployee->Nachname);
+	std::cout <<("\nBitte geben Sie nun die Personal Nummer des Angestellten ein. \n");
+	std::cin >> newEmployee->persNummer;
 	
-	printf("\nBitte geben Sie nun die Personal Nummer des Angestellten ein. \n");
-	scanf_s("%i", &newEmployee->persNummer);
-	
-	printf("\nBitte geben Sie nun die Position des Angestellten ein. \n");
-	scanf_s("%c", &newEmployee->Position);
+	std::cout <<("\nBitte geben Sie nun die Position des Angestellten ein. \n");
+	std::cout << "Beachten Sie das nur die Folgenden Möglichkeiten wählbar sind: \n Praktikant, Auszubildender, Mitarbeiter, Leiter";
+	std::cin >> dummy;
+	switch (dummy)
+	{
+	case Praktikant : newEmployee->Position = Praktikant;
+		break;
+
+	case Mitarbeiter: newEmployee->Position = Mitarbeiter;
+		break;
+
+	case Leiter: if (leiterVorhanden(newEmployee->Abteilungszugehörigkeit) == true) //Check ob ein Leiter vorhanden ist.
+	{
+		std::cout << "Es ist schon ein Abteilungsleitervorhanden vorhanden.";
+		return nullptr;
+		break;
+	}
+		newEmployee->Position = Leiter; 
+		break;
+
+	case Auszubildender: newEmployee->Position = Auszubildender;
+		break;
+	}
 	
 	addEmployee(department, *newEmployee);
 	
-	printf("\nBitte geben Sie das Geburtsdatum ein.\n");
+	std::cout <<("\nBitte geben Sie das Geburtsdatum ein.\n");
 	newEmployee->Geburtsdatum = Datumseingabe();
 	
-	printf("\nBitte geben Sie das Einstellungsdatum ein.\n");
+	std::cout <<("\nBitte geben Sie das Einstellungsdatum ein.\n");
 	newEmployee->Einstellungsdatum = Datumseingabe();
 	
-	printf("\n Bitte geben Sie das Gehalt ein.\n");
-	scanf_s("%f", &newEmployee->Gehalt);
+	std::cout <<("\n Bitte geben Sie das Gehalt ein.\n");
+	std::cin >> newEmployee->Gehalt;
 	
 	newEmployee->succ = department->Angestellte.first;
 	newEmployee->pred = 0;
 
 	unsigned int index;
 	
-	return *newEmployee;
+	return newEmployee;
 }
 
 void addEmployee(Abteilung* department, Angestellter newEmployee) 
@@ -78,13 +105,13 @@ void addEmployee(Abteilung* department, Angestellter newEmployee)
 	department->Angestellte.first = &newEmployee;
 }
 
-Angestellter* findEmployee(Abteilung* department, Angestellter* searchedEmployee)
+Angestellter* findEmployeeWithPersonalNr(Abteilung* department, int PersonalNummer)
 {
 	Angestellter* searched = department->Angestellte.first;
 	int flag = 0;
-	while (flag == 0)
+	while (searched != 0)
 	{
-		if (searched == searchedEmployee)
+		if (searched->persNummer == PersonalNummer)
 		{
 			flag = 1;
 			return searched;
@@ -94,11 +121,26 @@ Angestellter* findEmployee(Abteilung* department, Angestellter* searchedEmployee
 			searched = searched->succ;
 		}
 	}
+
+	return nullptr;
+}
+
+bool leiterVorhanden(Abteilung* department)
+{
+	Angestellter* istLeiter = department->Angestellte.first;
+	
+	while (istLeiter != 0)
+	{
+		if (istLeiter->Position == Leiter)
+			return true;
+	}
+
+	return false;
 }
 
 void deleteEmployee(Abteilung* department, Angestellter* kickedEmployee)
 {
-	Angestellter* doomed = findEmployee(department, kickedEmployee);
+	Angestellter* doomed = findEmployeeWithPersonalNr(department, kickedEmployee->persNummer);
 	doomed->pred->succ = doomed->succ;
 	doomed->succ->pred = doomed->pred;
 	
@@ -107,7 +149,7 @@ void deleteEmployee(Abteilung* department, Angestellter* kickedEmployee)
 
 void moveEmployee(Abteilung* department, Abteilung* newdepartment, Angestellter* movedEmployee)
 {
-	Angestellter* movedEmployee = findEmployee(department, movedEmployee);
+	Angestellter* movedEmployee = findEmployeeWithPersonalNr(department, movedEmployee->persNummer);
 	movedEmployee->pred->succ = movedEmployee->succ;
 	movedEmployee->succ->pred = movedEmployee->pred;
 	addEmployee(newdepartment, *movedEmployee);
@@ -129,7 +171,7 @@ float sumOfSalary(Abteilung* department)
 	return salarysum;
 }
 
-Angestellter* printLongestEmployment(Abteilung* department) // Hier durchaus colins lösung aus der letzten HA einfügen wollte es mal selber machen -Done
+Angestellter* printLongestEmployment(Abteilung* department) 
 {
 	Angestellter* longestEmployment = department->Angestellte.first;
 	Angestellter* Employee = department->Angestellte.first;
@@ -143,7 +185,6 @@ Angestellter* printLongestEmployment(Abteilung* department) // Hier durchaus col
 
 	return longestEmployment;
 }
-
 
 Angestellter* printOldestEmployee(Abteilung* department) 
 {
@@ -181,17 +222,23 @@ void printDepartment(Abteilung* department)
 {
 	int i = 1;
 	Angestellter* Employee = department->Angestellte.first;
-	printf("%c \n", department->Name);
-	printf("%d \n", department->Abteilungsnummer);
-	printf("%c \n", department->Adresse);
+	std::cout <<("%c \n", department->Name);
+	std::cout <<("%d \n", department->Abteilungsnummer);
+	std::cout <<("%c \n", department->Adresse);
 	while (Employee != 0)
 	{
-		printf("#%i %c, %c, %i \n", i, Employee->Nachname, Employee->Vorname, Employee->persNummer, Employee->Position);
+		std::cout << "# " << i;
+		printEmployee(Employee);
 		Employee = Employee->succ;
 		i++;
 	}
 }
 
+void printEmployee(Angestellter* employee)
+{
+	std::cout << " " << employee->Nachname << " " << employee->Vorname << " " << employee->persNummer << " " << employee->Position << " \n ";
+}
+	
 int AlterinJahren(Angestellter employee, int aktuellesJahr) //propably wrong
 {
 	int Alter = 0;
@@ -208,3 +255,10 @@ int Betriebszugehörigkeit(Angestellter employee, int aktuellesJahr)
 	return Jahre;
 }
 
+void printDepartmentSorted(Abteilung *department)
+{
+	Angestellter* Employee = department->Angestellte.first;
+	std::cout << ("%c \n", department->Name);
+	std::cout << ("%d \n", department->Abteilungsnummer);
+	std::cout << ("%c \n", department->Adresse);
+}
