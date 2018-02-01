@@ -186,7 +186,6 @@ Angestellter* printLongestEmployment(Abteilung* department)
 	return longestEmployment;
 }
 
-
 Angestellter* printOldestEmployee(Abteilung* department) 
 {
 	Angestellter* oldestEmployee = department->Angestellte.first;
@@ -239,7 +238,7 @@ void printEmployee(Angestellter* employee)
 {
 	std::cout << " " << employee->Nachname << " " << employee->Vorname << " " << employee->persNummer << " " << employee->Position << " \n ";
 }
-
+	
 int AlterinJahren(Angestellter employee, int aktuellesJahr) //propably wrong
 {
 	int Alter = 0;
@@ -256,3 +255,10 @@ int Betriebszugehörigkeit(Angestellter employee, int aktuellesJahr)
 	return Jahre;
 }
 
+void printDepartmentSorted(Abteilung *department)
+{
+	Angestellter* Employee = department->Angestellte.first;
+	std::cout << ("%c \n", department->Name);
+	std::cout << ("%d \n", department->Abteilungsnummer);
+	std::cout << ("%c \n", department->Adresse);
+}
